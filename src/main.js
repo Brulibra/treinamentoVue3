@@ -1,4 +1,13 @@
 import { createApp } from 'vue'
 import App from './App.vue'
+import router from './router'
 
-createApp(App).mount('#app')
+import '@/assets/css/tailwind.css'
+import '@/assets/css/fonts.css'
+import 'animate.css';
+
+const app = createApp(App)
+app.use(router)
+app.mount('#app')
+
+//nota, 1 criar a rota, depois montar o app
