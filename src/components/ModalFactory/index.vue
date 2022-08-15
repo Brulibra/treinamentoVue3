@@ -1,12 +1,14 @@
 <!-- eslint-disable vue/multi-word-component-names -->
+//ModalFactory irá montar os modais do site
 <template>
+  //"teleporta" o componete para onde ele deve ser montado
   <teleport to="body">
     <div
-    v-if="state.isActive"
-      class="fixed top-0 left-0 z-50 flex items-center justify-center w-full h-full bg-oppacity-50"
+      class="fixed top-0 left-0 z-50 flex items-center justify-center w-full h-full bg-black bg-opacity-50"
+      v-if="state.isActive"
       @click="handleModalToogle({ status: false })"
     >
-      <div class="fixed mx-10" :class="state.width">
+      <div class="fixed mx-10" :class="state.width" @click.stop>
         <div
           class="flex flex-col overflow-hidden bg-white rounded-lg animate__animated animate__fadeInDown animate__fastes"
         >
@@ -24,12 +26,17 @@ import {
   onBeforeUnmount,
   onMounted,
   reactive,
-  defineAsyncComponent
+  defineAsyncComponent,
 } from "vue";
+
 import useModal from "@/hooks/useModal";
 
+//compoente que será "teleportado"
 const ModalLogin = defineAsyncComponent(() =>
   import("../ModalLogin/index.vue")
+);
+const ModalAccouCreate = defineAsyncComponent(() =>
+  import("../ModalAccoutCreate/index.vue")
 );
 
 const DEFAULT_WIDTH = "w-3/4 lg:w-1/3";
@@ -37,6 +44,7 @@ const DEFAULT_WIDTH = "w-3/4 lg:w-1/3";
 export default {
   components: {
     ModalLogin,
+    ModalAccouCreate
   },
   setup() {
     const modal = useModal();

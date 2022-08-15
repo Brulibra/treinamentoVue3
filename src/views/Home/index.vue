@@ -31,12 +31,15 @@ export default {
     });
 
     function handleLogin() {
-      console.log('login')
       modal.open({
         component: "ModalLogin",
       });
     }
-    function handleAccoutCreate() {}
+    function handleAccoutCreate() {
+      modal.open({
+        component: "ModalAccouCreate",
+      });
+    }
 
     return {
       handleLogin,
