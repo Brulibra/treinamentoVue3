@@ -1,7 +1,5 @@
 <!-- eslint-disable vue/multi-word-component-names -->
-//ModalFactory irá montar os modais do site
 <template>
-  //"teleporta" o componete para onde ele deve ser montado
   <teleport to="body">
     <div
       class="fixed top-0 left-0 z-50 flex items-center justify-center w-full h-full bg-black bg-opacity-50"
@@ -31,7 +29,6 @@ import {
 
 import useModal from "@/hooks/useModal";
 
-//compoente que será "teleportado"
 const ModalLogin = defineAsyncComponent(() =>
   import("../ModalLogin/index.vue")
 );
@@ -44,7 +41,7 @@ const DEFAULT_WIDTH = "w-3/4 lg:w-1/3";
 export default {
   components: {
     ModalLogin,
-    ModalAccouCreate
+    ModalAccouCreate,
   },
   setup() {
     const modal = useModal();
@@ -64,7 +61,6 @@ export default {
     });
 
     function handleModalToogle(payload) {
-      console.log("payload", payload);
       if (payload.status) {
         state.component = payload.component;
         state.props = payload.props;
