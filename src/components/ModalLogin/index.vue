@@ -52,7 +52,8 @@
         }"
         class="px-8 py-3 mt-10 font-bold text-white rounded-full bg-brand-main focus:outline-none transition-all duration-150"
       >
-        Entrar
+        <icon v-if="state.isLoading" name="Loading" class="animate-spin" />
+        <span v-else>Entrar</span>
       </button>
     </form>
   </div>
@@ -60,8 +61,9 @@
 <script>
 import { reactive } from "vue";
 import { useField } from "vee-validate";
-import { useRoute } from "vue-router";
+import { useRouter } from "vue-router";
 import { useToast } from "vue-toastification";
+import Icon from "../Icons/index.vue";
 import useModal from "@/hooks/useModal";
 import services from "@/sevices";
 
@@ -71,9 +73,12 @@ import {
 } from "@/utils/validators";
 
 export default {
+  components: {
+    Icon,
+  },
   setup() {
     const modal = useModal();
-    const router = useRoute();
+    const router = useRouter();
     const toast = useToast();
 
     const { value: emailValue, errorMessage: emailErrorMessage } = useField(
