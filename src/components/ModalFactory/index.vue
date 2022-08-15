@@ -61,7 +61,6 @@ export default {
     });
 
     function handleModalToogle(payload) {
-      console.log("payload", payload);
       if (payload.status) {
         state.component = payload.component;
         state.props = payload.props;

@@ -1,13 +1,16 @@
-import { createApp } from 'vue'
-import App from './App.vue'
-import router from './router'
+import { createApp } from "vue";
+import Toast, { POSITION } from "vue-toastification";
+import App from "./App.vue";
+import router from "./router";
 
-import '@/assets/css/tailwind.css'
-import '@/assets/css/fonts.css'
-import 'animate.css';
+import "@/assets/css/tailwind.css";
+import "@/assets/css/fonts.css";
+import "animate.css";
+import "vue-toastification/dist/index.css";
 
-const app = createApp(App)
-app.use(router)
-app.mount('#app')
+const app = createApp(App);
+app.use(router);
+app.use(Toast, { position: POSITION.BOTTOM_RIGHT });
+app.mount("#app");
 
 //nota, 1 criar a rota, depois montar o app
