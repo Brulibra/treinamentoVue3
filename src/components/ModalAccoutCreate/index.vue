@@ -62,24 +62,6 @@
           {{ state.password.errorMessage }}
         </span>
       </label>
-      <label class="block mt-9">
-        <span class="text-lg font-medium text-gray-800">Repita a Senha</span>
-        <input
-          v-model="state.repetPassword.value"
-          type="repetPassword"
-          class="block w-full px-4 py-3 mt-1 text-lg bg-gray-100 border-2 border-transparent rounded"
-          :class="{
-            'border-brand-danger': !!state.repetPassword.errorMessage,
-          }"
-          placeholder="repet your password"
-        />
-        <span
-          v-if="!!state.repetPassword.errorMessage"
-          class="block font-medium text-brand-danger"
-        >
-          {{ state.repetPassword.errorMessage }}
-        </span>
-      </label>
       <button
         :disabled="state.isLoading"
         type="submit"
@@ -104,10 +86,7 @@ import Icon from "../Icons/index.vue";
 import useModal from "@/hooks/useModal";
 import services from "@/sevices";
 
-import {
-  validateEmptyAndLength3,
-  validateEmptyAndEmail,
-} from "@/utils/validators";
+import { validateEmptyAndLength3, validateEmptyAndEmail } from "@/utils/validators";
 
 export default {
   components: {
@@ -120,16 +99,16 @@ export default {
 
     const { value: nameValue, errorMessage: nameErrorMessage } = useField(
       "name",
-      validateEmptyAndEmail
+      validateEmptyAndLength3
     );
     const { value: emailValue, errorMessage: emailErrorMessage } = useField(
       "email",
       validateEmptyAndEmail
     );
-    const { value: passwordValue, errorMessage: passwordErrorMessage } =
-      useField("password", validateEmptyAndLength3);
-    const { value: repetPassword, errorMessage: repetPasswordErrorMessage } =
-      useField("password", validateEmptyAndLength3);
+    const { value: passwordValue, errorMessage: passwordErrorMessage } = useField(
+      "password",
+      validateEmptyAndLength3
+    );
 
     const state = reactive({
       hasErrors: false,
@@ -146,45 +125,46 @@ export default {
         value: passwordValue,
         errorMessage: passwordErrorMessage,
       },
-      repetPassword: {
-        value: repetPassword,
-        errorMessage: repetPasswordErrorMessage,
-      },
     });
+
+    async function login({ email, password }) {
+      const { data, errors } = await services.auth.login({ email, password });
+      if (!errors) {
+        window.localStorage.setItem("token", data.token);
+        router.push({ name: "Feedbacks" });
+        modal.close();
+      }
+      state.isLoading = false;
+    }
 
     async function handleSubmit() {
       try {
         toast.clear();
         state.isLoading = true;
-        const { data, errors } = await services.auth.login({
+        const { errors } = await services.auth.register({
+          name: state.name.value,
           email: state.email.value,
           password: state.password.value,
         });
 
         if (!errors) {
-          window.localStorage.setItem("token", data.token);
-          router.push({ name: "Feedbacks" });
-          modal.close();
+          await login({
+            email: state.email.value,
+            password: state.password.value,
+          });
           return;
         }
 
-        if (errors.status === 404) {
-          toast.error("E-mail não encontrado");
-        }
-
-        if (errors.status === 401) {
-          toast.error("E-mail ou Senha inválido");
-        }
 
         if (errors.status === 400) {
-          toast.error("Ocorreu um erro ao fazer o login");
+          toast.error("Ocorreu um erro ao fazer o cadastro");
         }
 
         state.isLoading = false;
       } catch (error) {
         state.isLoading = false;
         state.hasErrors = !!error;
-        toast.error("Ocorreu um erro ao fazer o login");
+        toast.error("Ocorreu um erro ao fazer o cadastro");
       }
     }
 
@@ -192,6 +172,7 @@ export default {
       state,
       close: modal.close,
       handleSubmit,
+      login,
     };
   },
 };
