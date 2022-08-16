@@ -63,6 +63,7 @@ import { reactive } from "vue";
 import { useField } from "vee-validate";
 import { useRouter } from "vue-router";
 import { useToast } from "vue-toastification";
+
 import Icon from "../Icons/index.vue";
 import useModal from "@/hooks/useModal";
 import services from "@/sevices";
@@ -103,7 +104,7 @@ export default {
 
     async function handleSubmit() {
       try {
-        toast.clear;
+        toast.clear();
         state.isLoading = true;
         const { data, errors } = await services.auth.login({
           email: state.email.value,
@@ -122,7 +123,7 @@ export default {
         }
 
         if (errors.status === 401) {
-          toast.error("E-mail ou Senha inválidos");
+          toast.error("E-mail ou Senha inválido");
         }
 
         if (errors.status === 400) {

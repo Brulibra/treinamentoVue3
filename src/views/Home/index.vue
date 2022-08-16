@@ -11,7 +11,7 @@
 import CustomHeader from "./CustomHead.vue";
 import Contact from "./Contact.vue";
 import { onMounted } from "vue";
-import { useRoute } from "vue-router";
+import { useRouter } from "vue-router";
 import useModal from "../../hooks/useModal";
 
 export default {
@@ -20,7 +20,7 @@ export default {
     Contact,
   },
   setup() {
-    const router = useRoute();
+    const router = useRouter();
     const modal = useModal();
 
     onMounted(() => {
