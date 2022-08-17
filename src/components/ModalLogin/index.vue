@@ -66,7 +66,7 @@ import { useToast } from "vue-toastification";
 
 import Icon from "../Icons/index.vue";
 import useModal from "@/hooks/useModal";
-import services from "@/sevices";
+import services from "@/services";
 
 import {
   validateEmptyAndLength3,
