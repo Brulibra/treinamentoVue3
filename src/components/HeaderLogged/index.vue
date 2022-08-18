@@ -44,7 +44,7 @@ export default {
       if (!store.currentUser.name) {
         return "...";
       }
-      return `${store.currentUser.name} (sair)`;
+      return `${store.currentUser.name}  (sair)`;
     });
 
     function handleLogout() {
