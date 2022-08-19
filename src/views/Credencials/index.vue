@@ -26,9 +26,9 @@
       <p class="mt-10 text-lg text-gray-800 font-regular">
         Esse aqui é a sua chave de api
       </p>
-      <div class="flex py-3 pl-5 pr-20 mt-2 rounded items-center bg-brand-gray">
+      <div class="flex py-3 pl-5 mt-2 rounded items-center bg-brand-gray w-1/2">
         <span class="">{{ store.User.currentUser.apiKey }}</span>
-        <div class="flex ml-20 mr-5">
+        <div class="flex ml-20 mr-1">
           <icon
             name="copy"
             :color="_brandColors.graydark"
@@ -46,7 +46,7 @@
       <p class="mt-5 text-lg text-gray-800 font-regular">
         Coloque o script abaixo no seu site para começar a receber feedbacks
       </p>
-      <div class="py-3 pl-5 pr-20 mt-2 rounded bg-brand-gray">
+      <div class="py-1 pl-5 pr-20 mt-2 rounded bg-brand-gray w-2/3 overflow-x-scroll">
         <pre>
       &lt;script src="http://Brulibra-feedbacker-widget.netfly.app?apiKey{{
             store.User.currentUser.apiKey
