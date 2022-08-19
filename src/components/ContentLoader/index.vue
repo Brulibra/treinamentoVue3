@@ -1,6 +1,14 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-  <h1></h1>
+  <div
+    :style="{
+      width: computedWidth,
+    }"
+    class="opacity-75 content-loader"
+  >
+    <span :style="{ animationDuration }" class="content-loader--fx" />
+    <slot />
+  </div>
 </template>
 <script>
 import { computed } from "vue";
@@ -39,3 +47,32 @@ export default {
   },
 };
 </script>
+
+<style lang="postcss" scoped>
+@keyframes shimmer {
+    100%{
+        transform: translateX(100%);
+    }
+}
+
+.content-loader{
+    position: relative;
+    vertical-align: middle;
+    overflow: hidden;
+    background: #f6f7f8;
+}
+.content-loader--fx{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transform: translate(-100%);
+
+    background: #f6f7f8;
+    background-image: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 38%);
+    background-position: 0 0 ;
+    background-size: 1000 100;
+    animation: shimmer infinite alternate ease-in-out;
+}
+</style>

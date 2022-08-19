@@ -79,12 +79,15 @@ import Icon from "@/components/Icons";
 import useStore from "@/hooks/useStore";
 import palette from "../../../palette";
 import ContentLoader from "../../components/ContentLoader/index.vue";
-// import { reactive } from "vue";
+import { reactive } from "vue";
 export default {
   components: { HeaderLogged, Icon, ContentLoader },
 
   setup() {
     const store = useStore();
+    const state = reactive({
+      isLoadin: false
+    })
 
     // const lateInvoice = "Este é um boleto atrasado";
     // const openInvouce = "Este é um boleto em aberto";
@@ -99,6 +102,7 @@ export default {
     //   },
     // });
     return {
+      state,
       store,
       _brandColors: palette.brand,
       // state,
