@@ -20,15 +20,22 @@
 
   <div class="flex justify-center w-full h-full">
     <div class="flex flex-col w-4/5 max-w-6xl py-10">
-      <h1 class="text-3xl font-black text-black">
-        Instalação e configuração
-      </h1>
+      <h1 class="text-3xl font-black text-black">Instalação e configuração</h1>
       <p class="mt-10 text-lg text-gray-800 font-regular">
         Esse aqui é a sua chave de api
       </p>
-      <div class="flex py-3 pl-5 mt-2 rounded items-center bg-brand-gray w-1/2">
+      <ContentLoader
+        v-if="store.Global.isLoadin || state.isLoadin"
+        class="rounded"
+        width="600px"
+        height="50px"
+      />
+      <div
+        v-else
+        class="flex py-3 pl-5 mt-2 rounded justify-between items-center bg-brand-gray w-full lg:w-1/2"
+      >
         <span class="">{{ store.User.currentUser.apiKey }}</span>
-        <div class="flex ml-20 mr-1">
+        <div class="flex ml-20 mr-5">
           <icon
             name="copy"
             :color="_brandColors.graydark"
@@ -46,12 +53,22 @@
       <p class="mt-5 text-lg text-gray-800 font-regular">
         Coloque o script abaixo no seu site para começar a receber feedbacks
       </p>
-      <div class="py-1 pl-5 pr-20 mt-2 rounded bg-brand-gray w-2/3 overflow-x-scroll">
+      <ContentLoader
+        v-if="store.Global.isLoadin || state.isLoadin"
+        class="rounded"
+        width="600px"
+        height="50px"
+      />
+      <div
+        v-else
+        class="py-1 pl-5 pr-20 mt-2 rounded bg-brand-gray w-full lg:w-2/3 overflow-x-scroll"
+      >
         <pre>
       &lt;script src="http://Brulibra-feedbacker-widget.netfly.app?apiKey{{
             store.User.currentUser.apiKey
           }}"&gt;&lt;/script&gt;
-      </pre>
+      </pre
+        >
       </div>
     </div>
   </div>
@@ -61,9 +78,10 @@ import HeaderLogged from "@/components/HeaderLogged/index.vue";
 import Icon from "@/components/Icons";
 import useStore from "@/hooks/useStore";
 import palette from "../../../palette";
+import ContentLoader from "../../components/ContentLoader/index.vue";
 // import { reactive } from "vue";
 export default {
-  components: { HeaderLogged, Icon },
+  components: { HeaderLogged, Icon, ContentLoader },
 
   setup() {
     const store = useStore();
