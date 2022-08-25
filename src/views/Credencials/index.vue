@@ -34,13 +34,14 @@
 
         <div v-if="!state.hasErrors" class="flex ml-20 mr-5">
           <icon
+          @click="handleCopy"
             name="copy"
             :color="_brandColors.graydark"
             size="24"
             class="cursor-pointer"
           />
           <icon
-          @click="handleGenerateApikey"
+            @click="handleGenerateApikey"
             name="loading"
             :color="_brandColors.graydark"
             size="24"
@@ -73,19 +74,24 @@
   </div>
 </template>
 <script>
-import HeaderLogged from "@/components/HeaderLogged/index.vue";
-import Icon from "@/components/Icons";
-import useStore from "@/hooks/useStore";
-import palette from "../../../palette";
-import ContentLoader from "../../components/ContentLoader/index.vue";
 import { reactive, watch } from "vue";
-import services from "@/services";
+import { useToast } from "vue-toastification";
+import palette from "../../../palette";
+
 import { setApiKey } from "@/store/user";
+import services from "@/services";
+import useStore from "@/hooks/useStore";
+
+import Icon from "@/components/Icons";
+import HeaderLogged from "@/components/HeaderLogged/index.vue";
+import ContentLoader from "../../components/ContentLoader/index.vue";
+
 export default {
   components: { HeaderLogged, Icon, ContentLoader },
 
   setup() {
     const store = useStore();
+    const toast = useToast();
     const state = reactive({
       hasErrors: false,
       isLoadin: false,
@@ -117,11 +123,22 @@ export default {
       }
     }
 
+    async function handleCopy() {
+      toast.clear();
+      try {
+        await navigator.clipboard.writeText(store.User.currentUser.apiKey);
+        toast.success("Copiado");
+      } catch (error) {
+        handleError(error);
+      }
+    }
+
     return {
       state,
       store,
       _brandColors: palette.brand,
       handleGenerateApikey,
+      handleCopy,
     };
   },
 };
