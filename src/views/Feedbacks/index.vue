@@ -9,11 +9,25 @@
       Detalhes de todos os feedbacks recebidos.
     </p>
   </div>
+
+  <div class="flex justify-center w-full pb-20">
+    <div class="w-4/5 max-w-6xl py-10 grid grid-col-4 gap-2">
+      <div class="text-3xl font-black">
+        <h1>Listagem</h1>
+        <suspense>
+          <template #default> <Filters /> </template>
+          <template #fallback> loading ... </template>
+        </suspense>
+      </div>
+      <div class="px-10 pt-20 col-span-3"></div>
+    </div>
+  </div>
 </template>
 <script>
 import HeaderLogged from "@/components/HeaderLogged/index.vue";
+import Filters from "./Filters.vue";
 
 export default {
-  components: { HeaderLogged },
+  components: { HeaderLogged, Filters },
 };
 </script>
