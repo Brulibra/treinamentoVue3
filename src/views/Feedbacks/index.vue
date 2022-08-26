@@ -16,8 +16,14 @@
       <div>
         <h1 class="text-3xl font-black">Listagem</h1>
         <suspense>
-          <template #default> <Filters /> </template>
-          <template #fallback> loading ... </template>
+          <template #default>
+            <Filters
+              class="mt-8 animate__animated animate__fadeIn animate__faster"
+            />
+          </template>
+          <template #fallback>
+            <FiltersLoading class="mt-8" />
+          </template>
         </suspense>
       </div>
       <div class="px-10 pt-20 col-span-3"></div>
@@ -27,8 +33,9 @@
 <script>
 import HeaderLogged from "@/components/HeaderLogged/index.vue";
 import Filters from "./Filters.vue";
+import FiltersLoading from "./FiltersLoading.vue";
 
 export default {
-  components: { HeaderLogged, Filters },
+  components: { HeaderLogged, Filters, FiltersLoading },
 };
 </script>
