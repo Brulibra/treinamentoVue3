@@ -1,7 +1,7 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <span
-    :class="classColor.bg"
+    :class="`bg-${classColor}`"
     class="p-2 text-xs font-black text-white uppercase rounded-full"
   >
     {{ label }}
@@ -27,15 +27,12 @@ export default {
 
     const classColor = computed(() => {
       if (props.type === "ISSUE") {
-        const bg = {bg: "brand-danger"}
-        return bg;
+        return "brand-danger";
       }
       if (props.type === "IDEA") {
-        const bg = {bg: "brand-warning"}
-        return bg
+        return "brand-warning";
       }
-      const bg = {bg: "brand-graydark"}
-        return bg
+      return "brand-graydark";
     });
 
     return {

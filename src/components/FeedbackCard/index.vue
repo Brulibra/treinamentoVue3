@@ -8,13 +8,14 @@
       <badge :type="feedback.type" />
 
       <span class="font-regular text-brand-graydark">
-        {{ feedback.createdAt }}
+        {{ getDiffTimeBetweenCurrentDate(feedback.createdAt) }}
       </span>
     </div>
   </div>
 </template>
 <script>
 import Badge from "./Badge.vue";
+import { getDiffTimeBetweenCurrentDate } from "@/utils/data.js";
 
 export default {
   components: {
@@ -26,6 +27,7 @@ export default {
     function handleToggle() {}
     return {
       handleToggle,
+      getDiffTimeBetweenCurrentDate,
     };
   },
 };
