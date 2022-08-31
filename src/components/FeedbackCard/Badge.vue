@@ -1,12 +1,13 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <span
-    :class="`bg-${classColor}`"
+    :class="classColor.bg"
     class="p-2 text-xs font-black text-white uppercase rounded-full"
   >
     {{ label }}
   </span>
 </template>
+
 <script>
 import { computed } from "vue";
 export default {
@@ -26,12 +27,15 @@ export default {
 
     const classColor = computed(() => {
       if (props.type === "ISSUE") {
-        return "brand-danger";
+        const bg = {bg: "brand-danger"}
+        return bg;
       }
       if (props.type === "IDEA") {
-        return "brand-warning";
+        const bg = {bg: "brand-warning"}
+        return bg
       }
-      return "brand-graydark";
+      const bg = {bg: "brand-graydark"}
+        return bg
     });
 
     return {

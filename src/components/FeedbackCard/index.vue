@@ -5,7 +5,8 @@
     @click="handleToggle"
   >
     <div class="flex items-center justify-between w-full mb-8">
-      <Badge :type="feedback.type" />
+      <badge :type="feedback.type" />
+
       <span class="font-regular text-brand-graydark">
         {{ feedback.createdAt }}
       </span>
@@ -14,6 +15,7 @@
 </template>
 <script>
 import Badge from "./Badge.vue";
+
 export default {
   components: {
     Badge,

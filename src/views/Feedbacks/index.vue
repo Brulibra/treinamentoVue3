@@ -5,17 +5,18 @@
   </div>
 
   <div class="flex flex-col items-center justify-center h-64 bg-brand-gray">
-    <h1 class="text-4xl font-black text center text-gray-800">Feedbacks</h1>
+    <h1 class="text-4xl font-black text-center text-gray-800">Feedbacks</h1>
     <p class="text-lg text-center text-gray-800 font-regular">
       Detalhes de todos os feedbacks recebidos.
     </p>
   </div>
 
   <div class="flex justify-center w-full pb-20">
-    <div class="w-4/5 max-w-6xl py-10 grid grid-col-4 gap-2">
+    <div class="w-4/5 max-w-6xl py-10 grid grid-cols-4 gap-2">
+
       <div>
-        <h1 class="text-3xl font-black">Listagem</h1>
-        <suspense>
+        <h1 class="text-3xl font-black text-brand-darkgray">Listagem</h1>
+        <Suspense>
           <template #default>
             <Filters
               class="mt-8 animate__animated animate__fadeIn animate__faster"
@@ -24,8 +25,9 @@
           <template #fallback>
             <FiltersLoading class="mt-8" />
           </template>
-        </suspense>
+        </Suspense>
       </div>
+
       <div class="px-10 pt-20 col-span-3">
         <p
           v-if="state.hasError"
@@ -34,13 +36,13 @@
           Aconteceu um erro ao carregar os feedbacks 😯
         </p>
         <p
-          v-if="state.feedbacks.length && !state.isLoading"
+          v-if="!state.feedbacks.length && !state.isLoading"
           class="text-lg text-center text-gray-800 font-regular"
         >
           Ainda nenhum feedback recebido 📝
         </p>
-        <FeedbackCardLoading v-if="state.isLoading" />
-        <FeedbackCard
+        <feedback-card-loading v-if="state.isLoading" />
+        <feedback-card
           v-else
           v-for="(feedback, index) in state.feedbacks"
           :key="feedback.id"
@@ -49,17 +51,20 @@
           class="mb-8"
         />
       </div>
+
     </div>
   </div>
 </template>
 <script>
 import { reactive, onMounted } from "vue";
+import services from "@/services";
+
 import HeaderLogged from "@/components/HeaderLogged/index.vue";
+import FeedbackCard from "@/components/FeedbackCard/index.vue";
+import FeedbackCardLoading from "@/components/FeedbackCard/Loading.vue";
+
 import Filters from "./Filters.vue";
 import FiltersLoading from "./FiltersLoading.vue";
-import FeedbackCard from "@/components/FeedbackCard";
-import FeedbackCardLoading from "@/components/FeedbackCard/Loading";
-import services from "@/services";
 
 export default {
   components: {
@@ -72,15 +77,20 @@ export default {
   setup() {
     const state = reactive({
       isLoading: false,
-      hasError: false,
       feedbacks: [],
+      hasError: false,
+      currentFeedbackType: "",
+      pagination: {
+        limit: 5,
+        offset: 0,
+      },
     });
 
     function handleErrors(error) {
-      state.isLoading = false
-      state.isLoadingFeedbacks = false
-      state.isLoadingMoreFeedback = false
-      state.hasError = !!error
+      state.isLoading = false;
+      state.isLoadingFeedbacks = false;
+      state.isLoadingMoreFeedback = false;
+      state.hasError = !!error;
     }
 
     async function fetchFeedbacks() {
@@ -89,7 +99,7 @@ export default {
 
         const { data } = await services.feedbacks.getAll({
           ...state.pagination,
-          type: state.currentFeedbackType
+          type: state.currentFeedbackType,
         });
 
         state.feedbacks = data.results;

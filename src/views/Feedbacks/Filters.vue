@@ -1,7 +1,7 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <div class="flex flex-col">
-    <h1 class="text-2xl font-regular text-black">Filtros</h1>
+    <h1 class="text-2xl font-regular text-brand-darkgray">Filtros</h1>
 
     <ul class="flex flex-col mt-3 list-none">
       <li
@@ -20,7 +20,7 @@
         </div>
         <span
           class="font-bold"
-          :class="filter.active ? filter.color.text : 'text-black'"
+          :class="filter.active ? filter.color.text : 'text-brand-darkgray'"
         >
           {{ filter.amount }}
         </span>
@@ -75,7 +75,7 @@ export default {
     });
 
     try {
-      const { data } = await services.feedback.getSummary();
+      const { data } = await services.feedbacks.getSummary();
       state.filters = applyFiltersStructure(data);
     } catch (error) {
       state.hasError = !!error;
