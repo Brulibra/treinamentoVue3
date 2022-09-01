@@ -82,7 +82,7 @@ import { useField } from "vee-validate";
 import { useRouter } from "vue-router";
 import { useToast } from "vue-toastification";
 
-import Icon from "../Icons/index.vue";
+import Icon from "../Icon/index.vue";
 import useModal from "@/hooks/useModal";
 import services from "@/services";
 

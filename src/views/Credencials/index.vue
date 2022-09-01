@@ -82,7 +82,7 @@ import { setApiKey } from "@/store/user";
 import services from "@/services";
 import useStore from "@/hooks/useStore";
 
-import Icon from "@/components/Icons";
+import Icon from "@/components/Icon";
 import HeaderLogged from "@/components/HeaderLogged/index.vue";
 import ContentLoader from "../../components/ContentLoader/index.vue";
 
