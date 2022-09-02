@@ -11,15 +11,20 @@
         {{ getDiffTimeBetweenCurrentDate(feedback.createdAt) }}
       </span>
     </div>
+    <div>{{ !state.isOpen }}</div>
 
     <div class="text-lg font-medium text-gray-800">
       {{ feedback.text }}
     </div>
 
+    <div v-if="!state.isOpen" class="flex justify-end mt-8">
+      <Icon name="ChevronDown" size="24" :color="brandColors.graydark" />
+    </div>
+
     <div
+      v-else
       :class="{ animate__fadeOut: state.isClosing }"
       class="flex mt-8 animate__animated animate__fadeIn animate__faster"
-      v-if="state.isOpen"
     >
       <div class="flex flex-col w-1/2">
         <div class="flex flex-col">
@@ -28,6 +33,7 @@
           </span>
           <span class="font-medium text-gray-700"> {{ feedback.page }} </span>
         </div>
+
         <div class="flex flex-col">
           <span class="font-bold text-gray-400 uppercase select-none">
             Dispositivo
@@ -35,6 +41,7 @@
           <span class="font-medium text-gray-700"> {{ feedback.device }} </span>
         </div>
       </div>
+
       <div class="flex flex-col w-1/2">
         <div class="flex flex-col">
           <span class="font-bold text-gray-400 uppercase select-none">
@@ -44,16 +51,12 @@
             {{ feedback.fingerprint }}
           </span>
         </div>
-
-        <div class="flex justify-end mt-8" v-if="!state.isOpen">
-          <icon name="ChevronDown" size="24" :color="brandColors.graydark" />
-        </div>
       </div>
     </div>
   </div>
 </template>
 <script>
-import Icon from "../Icon";
+import Icon from "/src/components/Icon";
 import Badge from "./Badge.vue";
 
 import { reactive } from "vue";
