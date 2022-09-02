@@ -11,7 +11,6 @@
         {{ getDiffTimeBetweenCurrentDate(feedback.createdAt) }}
       </span>
     </div>
-    <div>{{ !state.isOpen }}</div>
 
     <div class="text-lg font-medium text-gray-800">
       {{ feedback.text }}

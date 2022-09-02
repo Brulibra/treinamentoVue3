@@ -13,12 +13,12 @@
 
   <div class="flex justify-center w-full pb-20">
     <div class="w-4/5 max-w-6xl py-10 grid grid-cols-4 gap-2">
-
       <div>
         <h1 class="text-3xl font-black text-brand-darkgray">Listagem</h1>
         <Suspense>
           <template #default>
             <Filters
+              @select="changeFeedbacksType"
               class="mt-8 animate__animated animate__fadeIn animate__faster"
             />
           </template>
@@ -41,7 +41,9 @@
         >
           Ainda nenhum feedback recebido 📝
         </p>
-        <feedback-card-loading v-if="state.isLoading" />
+        <feedback-card-loading
+          v-if="state.isLoading || state.isLoadingFeedbacks"
+        />
         <feedback-card
           v-else
           v-for="(feedback, index) in state.feedbacks"
@@ -50,8 +52,11 @@
           :feedback="feedback"
           class="mb-8"
         />
-      </div>
+        <feedback-card-loading
+          v-if="state.isLoadingMoreFeedback"
+        />
 
+      </div>
     </div>
   </div>
 </template>
@@ -77,6 +82,8 @@ export default {
   setup() {
     const state = reactive({
       isLoading: false,
+      isLoadingFeedbacks: false,
+      isLoadingMoreFeedback: false,
       feedbacks: [],
       hasError: false,
       currentFeedbackType: "",
@@ -91,6 +98,27 @@ export default {
       state.isLoadingFeedbacks = false;
       state.isLoadingMoreFeedback = false;
       state.hasError = !!error;
+    }
+
+    async function changeFeedbacksType(type) {
+      try {
+        state.isLoadingFeedbacks = true;
+        state.isLoadingFeedbacks = true;
+        state.pagination.offset = 0;
+        state.pagination.limit = 5;
+        state.currentFeedbackType = type;
+
+        const { data } = await services.feedbacks.getAll({
+          type,
+          ...state.pagination,
+        });
+
+        state.feedbacks = data.results;
+        state.pagination = data.pagination;
+        state.isLoadingFeedbacks = false;
+      } catch (error) {
+        handleErrors(error);
+      }
     }
 
     async function fetchFeedbacks() {
@@ -112,10 +140,45 @@ export default {
 
     onMounted(() => {
       fetchFeedbacks();
+      window.addEventListener("scroll", handleSroll, false);
     });
+
+    onMounted(() => {
+      fetchFeedbacks();
+      window.removeEventListener("scroll", handleSroll, false);
+    });
+
+    async function handleSroll() {
+      const isBottomOfWindow =
+        Math.ceil(document.documentElement.scrollTop + window.innerHeight) >=
+        document.documentElement.scrollHeight;
+
+      if (state.isLoading || state.isLoadingMoreFeedback) return;
+      if (!isBottomOfWindow) return;
+      if (state.feedbacks.length >= state.pagination.total)
+        try {
+          state.isLoadingMoreFeedback = true;
+          const { data } = await services.feedbacks.getAll({
+            ...state.pagination,
+            type: state.currentFeedbackType,
+            offset: state.pagination.offset + 5,
+          });
+
+          if (data.results.length) {
+            state.feedbacks.push(...data.results);
+          }
+          state.isLoadingMoreFeedback = false;
+          state.pagination = data.pagination;
+        } catch (error) {
+          state.isLoadingMoreFeedback = false;
+          handleErrors(error);
+        }
+    }
 
     return {
       state,
+      changeFeedbacksType,
+      handleSroll,
     };
   },
 };
