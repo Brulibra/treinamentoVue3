@@ -17,7 +17,8 @@
     </div>
 
     <div
-      class="flex mt-8 animate__animated animate_fadeInUp animate__faster"
+      :class="{ animate__fadeOut: state.isClosing }"
+      class="flex mt-8 animate__animated animate__fadeIn animate__faster"
       v-if="state.isOpen"
     >
       <div class="flex flex-col w-1/2">
@@ -44,24 +45,26 @@
           </span>
         </div>
 
-        <div class="flex justify-end mt-8" v-if="!state.isOpen" >
-          <Icon name="Copy" size="24" :color="brandColors.graydark" />
+        <div class="flex justify-end mt-8" v-if="!state.isOpen">
+          <icon name="ChevronDown" size="24" :color="brandColors.graydark" />
         </div>
       </div>
     </div>
   </div>
 </template>
 <script>
-  import { reactive } from "vue";
-  import { getDiffTimeBetweenCurrentDate } from "@/utils/data.js";
-  import palette from "../../../palette";
-  
-  import Badge from "./Badge.vue";
-  import Icon from "../Icon"
+import Icon from "../Icon";
+import Badge from "./Badge.vue";
+
+import { reactive } from "vue";
+import { getDiffTimeBetweenCurrentDate } from "@/utils/data.js";
+import { wait } from "@/utils/timeOut";
+import palette from "../../../palette";
 
 export default {
   components: {
-    Badge, Icon
+    Badge,
+    Icon,
   },
 
   props: {
@@ -71,12 +74,13 @@ export default {
   setup(props) {
     const state = reactive({
       isOpen: props.isOpened,
-      isClosing: !props.isOpened
-    })
-    function handleToggle() {
-      state.isClosing = true
-      state.isOpen = !state.isOpen
-      state.isClosing = false
+      isClosing: !props.isOpened,
+    });
+    async function handleToggle() {
+      state.isClosing = true;
+      await wait(250);
+      state.isOpen = !state.isOpen;
+      state.isClosing = false;
     }
     return {
       state,
