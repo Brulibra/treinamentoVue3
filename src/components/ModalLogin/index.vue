@@ -1,19 +1,17 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-  <div class="flex justify-between">
-    <h1 class="text-4xl font-black text-gray-800">Entre na sua Conta</h1>
-    <button @click="close" class="text-4xl text-gray-600 focus:outline-none">
-      &times;
-    </button>
+  <div class="modalLogin-header">
+    <h1 class="modalLogin-title">Entre na sua Conta</h1>
+    <button @click="close" class="modalLogin-closeButton">&times;</button>
   </div>
   <div class="mt-16">
     <form @submit.prevent="handleSubmit">
-      <label class="block mt-9">
-        <span class="text-lg font-medium text-gray-800">E-mail</span>
+      <label class="modalLogin-label">
+        <span class="modalLogin-inputName">E-mail</span>
         <input
           v-model="state.email.value"
           type="email"
-          class="block w-full px-4 py-3 mt-1 text-lg bg-gray-100 border-2 border-transparent rounded"
+          class="modalLogin-inputStyle"
           :class="{
             'border-brand-danger': !!state.email.errorMessage,
           }"
@@ -26,12 +24,12 @@
           {{ state.email.errorMessage }}
         </span>
       </label>
-      <label class="block mt-9">
-        <span class="text-lg font-medium text-gray-800">Senha</span>
+      <label class="modalLogin-label">
+        <span class="modalLogin-inputName">Senha</span>
         <input
           v-model="state.password.value"
           type="password"
-          class="block w-full px-4 py-3 mt-1 text-lg bg-gray-100 border-2 border-transparent rounded"
+          class="modalLogin-inputStyle"
           :class="{
             'border-brand-danger': !!state.password.errorMessage,
           }"
@@ -50,7 +48,7 @@
         :class="{
           'opacity-50': state.isLoading,
         }"
-        class="px-8 py-3 mt-10 font-bold text-white rounded-full bg-brand-main focus:outline-none transition-all duration-150"
+        class="modalLogin-signInButton"
       >
         <icon v-if="state.isLoading" name="Loading" class="animate-spin" />
         <span v-else>Entrar</span>
@@ -146,3 +144,34 @@ export default {
   },
 };
 </script>
+<style scoped>
+.modalLogin-header {
+  @apply flex justify-between;
+}
+.modalLogin-title {
+  @apply text-4xl font-black text-gray-800;
+}
+.modalLogin-closeButton {
+  @apply text-4xl text-gray-600;
+  @apply focus:outline-none;
+}
+.modalLogin-label {
+  @apply block mt-9;
+}
+.modalLogin-inputName {
+  @apply text-lg font-medium text-gray-800;
+}
+.modalLogin-inputStyle {
+  @apply block w-full;
+  @apply px-4 py-3 mt-1;
+  @apply text-lg;
+  @apply bg-gray-100 border-2 border-transparent rounded;
+}
+.modalLogin-signInButton {
+  @apply px-8 py-3 mt-10;
+  @apply font-bold text-white;
+  @apply rounded-full bg-brand-main;
+  @apply focus:outline-none;
+  @apply transition-all duration-150;
+}
+</style>

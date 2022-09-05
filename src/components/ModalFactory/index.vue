@@ -2,15 +2,15 @@
 <template>
   <teleport to="body">
     <div
-      class="fixed top-0 left-0 z-50 flex items-center justify-center w-full h-full bg-black bg-opacity-50"
+      class="modalFactory-overlay"
       v-if="state.isActive"
       @click="handleModalToogle({ status: false })"
     >
-      <div class="fixed mx-10" :class="state.width" @click.stop>
+      <div class="modalFactory-elementContainer" :class="state.width" @click.stop>
         <div
-          class="flex flex-col overflow-hidden bg-white rounded-lg animate__animated animate__fadeInDown animate__fastes"
+          class="modalFactory-elementContent"
         >
-          <div class="flex flex-col px-12 py-10 bg-white">
+          <div class="modalFactory-elementInnerPadding">
             <component :is="state.component" />
           </div>
         </div>
@@ -80,3 +80,23 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.modalFactory-overlay{
+  @apply fixed top-0 left-0 z-50;
+  @apply flex items-center justify-center;
+  @apply w-full h-full;
+  @apply bg-black bg-opacity-50
+}
+.modalFactory-elementContainer{
+  @apply fixed mx-10
+}
+.modalFactory-elementContent{
+  @apply flex flex-col overflow-hidden bg-white rounded-lg;
+  @layer animate__animated animate__fadeInDown animate__fastes
+}
+.modalFactory-elementInnerPadding{
+  @apply flex flex-col px-12 py-10 bg-white
+}
+
+</style>
