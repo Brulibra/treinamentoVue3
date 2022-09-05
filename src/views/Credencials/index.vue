@@ -5,7 +5,7 @@
   </div>
 
   <div class="flex flex-col items-center justify-center h-64 bg-brand-gray">
-    <h1 class="text-4xl font-black text center text-gray-800">Credenciais</h1>
+    <h1 class="text-4xl font-black text-center text-gray-800">Credenciais</h1>
     <p class="text-lg text-center text-gray-800 font-regular">
       Guia de instalação e geração de suas credenciais
     </p>
@@ -82,7 +82,7 @@ import { setApiKey } from "@/store/user";
 import services from "@/services";
 import useStore from "@/hooks/useStore";
 
-import Icon from "@/components/Icons";
+import Icon from "@/components/Icon";
 import HeaderLogged from "@/components/HeaderLogged/index.vue";
 import ContentLoader from "../../components/ContentLoader/index.vue";
 
