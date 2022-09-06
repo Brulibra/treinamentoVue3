@@ -137,10 +137,14 @@ export default {
 </script>
 <style scoped>
 .credencials-menu {
-  @apply flex justify-center w-full h-28 bg-brand-main;
+  @apply flex;
+  @apply justify-center w-full h-28;
+  @apply bg-brand-main;
 }
 .credencials-header {
-  @apply flex flex-col items-center justify-center h-64 bg-brand-gray;
+  @apply flex flex-col;
+  @apply items-center justify-center h-64;
+  @apply bg-brand-gray;
 }
 .credencials-headerTitle {
   @apply text-4xl font-black text-center text-gray-800;
@@ -149,10 +153,12 @@ export default {
   @apply text-lg text-center text-gray-800 font-regular;
 }
 .credencials-main {
-  @apply flex justify-center w-full h-full;
+  @apply flex;
+  @apply justify-center w-full h-full;
 }
 .credencials-mainContent {
-  @apply flex flex-col w-4/5 max-w-6xl py-10;
+  @apply flex flex-col;
+  @apply w-4/5 max-w-6xl py-10;
 }
 .credencials-mainTitle {
   @apply text-3xl font-black text-black;
@@ -161,12 +167,16 @@ export default {
   @apply text-lg text-gray-800 font-regular;
 }
 .credencials-mainApikey {
-  @apply flex py-3 pl-5 mt-2 rounded justify-between items-center bg-brand-gray w-full lg:w-1/2;
+  @apply flex;
+  @apply justify-between items-center py-3 pl-5 mt-2 w-full lg:w-1/2;
+  @apply rounded bg-brand-gray;
 }
 .credencials-icons {
   @apply flex ml-20 mr-5;
 }
 .credencials-mainScript {
-  @apply py-1 pl-5 pr-20 mt-2 rounded bg-brand-gray w-full lg:w-2/3 overflow-x-scroll;
+  @apply py-1 pl-5 pr-20 mt-2 w-full lg:w-2/3;
+  @apply rounded bg-brand-gray;
+  @apply overflow-x-scroll;
 }
 </style>

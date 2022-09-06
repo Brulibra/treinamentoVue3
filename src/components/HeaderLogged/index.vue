@@ -1,6 +1,6 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-  <div class="flex items-center justify-between w-4/5 max-w-6xl py-10">
+  <div class="headerLogged-nav">
     <div class="w-28 lg:w-26">
       <img src="@/assets/images/logo_white.png" alt="logo" />
     </div>
@@ -8,20 +8,17 @@
       <ul class="flex list-none">
         <li
           @click="() => router.push({ name: 'Credencials' })"
-          class="px-6 py-2 mr-2 font-bold text-white rounded-full cursor-pointer focus:outline-none"
+          class="headerLogged-menuItem"
         >
           Credencials
         </li>
         <li
           @click="() => router.push({ name: 'Feedbacks' })"
-          class="px-6 py-2 mr-2 font-bold text-white rounded-full cursor-pointer focus:outline-none"
+          class="headerLogged-menuItem"
         >
           Feedbacks
         </li>
-        <li
-          @click="handleLogout"
-          class="px-6 py-2 mr-2 font-bold bg-white rounded-full text-brand-main cursor-pointer focus:outline-none"
-        >
+        <li @click="handleLogout" class="headerLogged-userName">
           {{ logoutLabel }}
         </li>
       </ul>
@@ -61,3 +58,22 @@ export default {
   },
 };
 </script>
+<style scoped>
+.headerLogged-nav {
+  @apply flex;
+  @apply items-center justify-between;
+  @apply w-4/5 max-w-6xl py-10;
+}
+.headerLogged-menuItem {
+  @apply px-6 py-2 mr-2;
+  @apply font-bold text-white;
+  @apply rounded-full;
+  @apply cursor-pointer focus:outline-none;
+}
+.headerLogged-userName {
+  @apply px-6 py-2 mr-2;
+  @apply font-bold text-brand-main;
+  @apply bg-white rounded-full;
+  @apply cursor-pointer focus:outline-none;
+}
+</style>
