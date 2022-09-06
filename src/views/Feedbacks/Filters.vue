@@ -1,9 +1,9 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-  <div class="flex flex-col">
-    <h1 class="text-2xl font-regular text-brand-darkgray">Filtros</h1>
+  <div class="filters-container">
+    <h1 class="filters-title">Filtros</h1>
 
-    <ul class="flex flex-col mt-3 list-none">
+    <ul class="filters-list">
       <li
         v-for="filter in state.filters"
         :key="filter.label"
@@ -109,3 +109,14 @@ export default {
   },
 };
 </script>
+<style scoped>
+.filters-container{
+  @apply flex flex-col
+}
+.filters-title{
+  @apply text-2xl font-regular text-black
+}
+.filters-list{
+  @apply flex flex-col mt-3 list-none
+}
+</style>

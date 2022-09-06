@@ -1,25 +1,25 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-  <div class="flex justify-center w-full h-28 bg-brand-main">
+  <div class="feedbacks-menu">
     <HeaderLogged />
   </div>
 
-  <div class="flex flex-col items-center justify-center h-64 bg-brand-gray">
-    <h1 class="text-4xl font-black text-center text-gray-800">Feedbacks</h1>
-    <p class="text-lg text-center text-gray-800 font-regular">
+  <div class="feedbacks-header">
+    <h1 class="feedbacks-headerTitle">Feedbacks</h1>
+    <p class="feedbacks-headerText">
       Detalhes de todos os feedbacks recebidos.
     </p>
   </div>
 
-  <div class="flex justify-center w-full pb-20">
-    <div class="w-4/5 max-w-6xl py-10 grid grid-cols-4 gap-2">
+  <div class="feedbacks-main">
+    <div class="feedbacks-mainGrid">
       <div>
-        <h1 class="text-3xl font-black text-brand-darkgray">Listagem</h1>
+        <h1 class="feedbacks-filtersTitle">Listagem</h1>
         <Suspense>
           <template #default>
             <Filters
               @select="changeFeedbacksType"
-              class="mt-8 animate__animated animate__fadeIn animate__faster"
+              class="feedbacks-filtersList"
             />
           </template>
           <template #fallback>
@@ -28,16 +28,16 @@
         </Suspense>
       </div>
 
-      <div class="px-10 pt-20 col-span-3">
+      <div class="feedbacks-filtersCard">
         <p
           v-if="state.hasError"
-          class="text-lg text-center text-gray-800 font-regular"
+          class="feedbacks-filtersText"
         >
           Aconteceu um erro ao carregar os feedbacks 😯
         </p>
         <p
           v-if="!state.feedbacks.length && !state.isLoading && !state.isLoadingFeedbacks && !state.hasError"
-          class="text-lg text-center text-gray-800 font-regular"
+          class="feedbacks-filtersText"
         >
           Ainda nenhum feedback recebido 📝
         </p>
@@ -181,3 +181,43 @@ export default {
   },
 };
 </script>
+<style scoped>
+  .feedbacks-menu {
+  @apply flex;
+  @apply justify-center w-full h-28;
+  @apply bg-brand-main;
+}
+.feedbacks-header {
+  @apply flex flex-col;
+  @apply items-center justify-center h-64;
+  @apply bg-brand-gray;
+}
+.feedbacks-headerTitle {
+  @apply text-4xl font-black text-center text-gray-800;
+}
+.feedbacks-headerText {
+  @apply text-lg text-center text-gray-800 font-regular;
+}
+.feedbacks-main {
+  @apply flex;
+  @apply justify-center w-full pb-20;
+}
+.feedbacks-mainGrid{
+  @apply grid grid-cols-4 gap-2;
+  @apply w-4/5 max-w-6xl py-10;
+}
+.feedbacks-filtersTitle{
+  @apply text-3xl font-black text-black
+}
+.feedbacks-filtersList{
+  @apply mt-8;
+  @layer animate__animated animate__fadeIn animate__faster;
+}
+.feedbacks-filtersCard{
+  @apply col-span-3;
+  @apply px-10 pt-20;
+}
+.feedbacks-filtersText{
+  @apply text-lg text-center text-gray-800 font-regular
+}
+</style>
