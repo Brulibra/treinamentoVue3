@@ -1,18 +1,15 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-  <div
-    class="flex flex-col px-8 py-6 rounded cursor-pointer bg-brand-gray"
-    @click="handleToggle"
-  >
-    <div class="flex items-center justify-between w-full mb-8">
+  <div class="feedback-card-container" @click="handleToggle">
+    <div class="feedback-card-header">
       <badge :type="feedback.type" />
 
-      <span class="font-regular text-brand-graydark">
+      <span class="feedback-card-days">
         {{ getDiffTimeBetweenCurrentDate(feedback.createdAt) }}
       </span>
     </div>
 
-    <div class="text-lg font-medium text-gray-800">
+    <div class="feedback-card-title">
       {{ feedback.text }}
     </div>
 
@@ -23,30 +20,26 @@
     <div
       v-else
       :class="{ animate__fadeOut: state.isClosing }"
-      class="flex mt-8 animate__animated animate__fadeIn animate__faster"
+      class="feedback-card-content"
     >
-      <div class="flex flex-col w-1/2">
-        <div class="flex flex-col">
-          <span class="font-bold text-gray-400 uppercase select-none">
-            Página
-          </span>
-          <span class="font-medium text-gray-700"> {{ feedback.page }} </span>
+      <div class="feedback-card-content-collum">
+        <div class="feedback-card-content-box">
+          <span class="feedback-card-content-title"> Página </span>
+          <span class="feedback-card-content-text"> {{ feedback.page }} </span>
         </div>
 
-        <div class="flex flex-col">
-          <span class="font-bold text-gray-400 uppercase select-none">
-            Dispositivo
+        <div class="feedback-card-content-box">
+          <span class="feedback-card-content-title"> Dispositivo </span>
+          <span class="feedback-card-content-text">
+            {{ feedback.device }}
           </span>
-          <span class="font-medium text-gray-700"> {{ feedback.device }} </span>
         </div>
       </div>
 
-      <div class="flex flex-col w-1/2">
-        <div class="flex flex-col">
-          <span class="font-bold text-gray-400 uppercase select-none">
-            Usuário
-          </span>
-          <span class="font-medium text-gray-700">
+      <div class="feedback-card-content-collum">
+        <div class="feedback-card-content-box">
+          <span class="feedback-card-content-title"> Usuário </span>
+          <span class="feedback-card-content-text">
             {{ feedback.fingerprint }}
           </span>
         </div>
@@ -54,6 +47,39 @@
     </div>
   </div>
 </template>
+
+<style scoped>
+.feedback-card-container {
+  @apply flex flex-col px-8 py-6 rounded cursor-pointer bg-brand-gray;
+}
+
+.feedback-card-header {
+  @apply flex items-center justify-between w-full mb-8;
+}
+.feedback-card-days {
+  @apply font-regular text-brand-graydark;
+}
+.feedback-card-title {
+  @apply text-lg font-medium text-gray-800;
+}
+.feedback-card-content {
+  @apply flex mt-8;
+  @layer animate__animated animate__fadeIn animate__faster;
+}
+.feedback-card-content-collum {
+  @apply flex flex-col w-1/2;
+}
+.feedback-card-content-box {
+  @apply flex flex-col;
+}
+.feedback-card-content-title {
+  @apply font-bold text-gray-400 uppercase select-none;
+}
+.feedback-card-content-text {
+  @apply font-medium text-gray-700;
+}
+</style>
+
 <script>
 import Icon from "/src/components/Icon";
 import Badge from "./Badge.vue";

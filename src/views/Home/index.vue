@@ -2,8 +2,8 @@
 <template>
   <CustomHeader @create-accout="handleAccoutCreate" @login="handleLogin" />
   <Contact />
-  <div class="flex justify-center py-10 bg-brand-gray">
-    <p class="front-medium text-center text-gray-800">feedbacker© 2022</p>
+  <div class="footer">
+    <p class="footer-content">feedbacker© 2022</p>
   </div>
 </template>
 
@@ -48,3 +48,13 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.footer {
+  @apply flex justify-center;
+  @apply py-10 bg-brand-gray;
+}
+.footer-content {
+  @apply font-medium text-center text-gray-800;
+}
+</style>

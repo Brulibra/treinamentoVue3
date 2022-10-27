@@ -1,21 +1,18 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-  <div class="flex flex-col">
-    <h1 class="text-2xl font-regular text-brand-darkgray">Filtros</h1>
+  <div class="filters-container">
+    <h1 class="filters-title">Filtros</h1>
 
-    <ul class="flex flex-col mt-3 list-none">
+    <ul class="filters-list">
       <li
         v-for="filter in state.filters"
         :key="filter.label"
         :class="{ 'bg-gray-200 bg-opacity-50': filter.active }"
         @click="() => handleSelect(filter)"
-        class="flex items-center justify-between px-4 py-1 rounded cursor-pointer"
+        class="filters-list-item"
       >
         <div class="flex items-center">
-          <span
-            :class="filter.color.bg"
-            class="inline-block w-2 h-2 mr-2 rounded-full"
-          />
+          <span :class="filter.color.bg" class="filters-list-bullet" />
           {{ filter.label }}
         </div>
         <span
@@ -109,3 +106,20 @@ export default {
   },
 };
 </script>
+<style scoped>
+.filters-container {
+  @apply flex flex-col;
+}
+.filters-title {
+  @apply text-2xl font-regular text-black;
+}
+.filters-list {
+  @apply flex flex-col mt-3 list-none;
+}
+.filters-list-item {
+  @apply flex items-center justify-between px-4 py-1 rounded cursor-pointer;
+}
+.filters-list-bullet {
+  @apply inline-block w-2 h-2 mr-2 rounded-full;
+}
+</style>

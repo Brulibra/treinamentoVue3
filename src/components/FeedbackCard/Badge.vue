@@ -1,12 +1,15 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-  <span
-    :class="`bg-${classColor}`"
-    class="p-2 text-xs font-black text-white uppercase rounded-full"
-  >
+  <span :class="`bg-${classColor}`" class="badge">
     {{ label }}
   </span>
 </template>
+
+<style scoped>
+.badge {
+  @apply p-2 text-xs font-black text-white uppercase rounded-full;
+}
+</style>
 
 <script>
 import { computed } from "vue";
