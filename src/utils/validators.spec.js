@@ -1,4 +1,4 @@
-import { validateEmptyAndEmail, validateEmptyAndLength3 } from "../../src/utils/validators";
+import { validateEmptyAndEmail, validateEmptyAndLength3 } from "./validators";
 
 describe("Validators utils, maxLength3", () => {
   it("should return an error with empty payload", () => {
