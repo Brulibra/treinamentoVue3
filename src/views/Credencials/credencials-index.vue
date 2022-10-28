@@ -1,4 +1,3 @@
-<!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <div class="credencials-menu">
     <HeaderLogged />
@@ -75,8 +74,8 @@ import services from "@/services";
 import useStore from "@/hooks/useStore";
 
 import Icon from "@/components/Icon";
-import HeaderLogged from "@/components/HeaderLogged/index.vue";
-import ContentLoader from "../../components/ContentLoader/index.vue";
+import HeaderLogged from "@/components/HeaderLogged/header-logged.vue";
+import ContentLoader from "../../components/ContentLoader/content-loader.vue";
 
 export default {
   components: { HeaderLogged, Icon, ContentLoader },

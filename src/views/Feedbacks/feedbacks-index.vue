@@ -1,4 +1,3 @@
-<!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <div class="feedbacks-menu">
     <HeaderLogged />
@@ -61,12 +60,12 @@
 import { reactive, onMounted, onUnmounted } from "vue";
 import services from "@/services";
 
-import HeaderLogged from "@/components/HeaderLogged/index.vue";
-import FeedbackCard from "@/components/FeedbackCard/index.vue";
-import FeedbackCardLoading from "@/components/FeedbackCard/Loading.vue";
+import HeaderLogged from "@/components/HeaderLogged/header-logged.vue";
+import FeedbackCard from "@/components/FeedbackCard/feedback-card.vue";
+import FeedbackCardLoading from "@/components/FeedbackCard/feedbackCard-loading.vue";
 
-import Filters from "./Filters.vue";
-import FiltersLoading from "./FiltersLoading.vue";
+import Filters from "./feedbacks-filters.vue";
+import FiltersLoading from "./filters-loading.vue";
 
 export default {
   components: {
