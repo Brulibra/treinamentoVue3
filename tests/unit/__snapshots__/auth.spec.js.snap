@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`AuthService should return a token when user log-in 1`] = `
+exports[`Services auth, AuthService should return a token when user log-in 1`] = `
 {
   "data": {
     "token": "123.123.123",
@@ -9,7 +9,7 @@ exports[`AuthService should return a token when user log-in 1`] = `
 }
 `;
 
-exports[`AuthService should return an user when register 1`] = `
+exports[`Services auth, AuthService should return an user when register 1`] = `
 {
   "data": {
     "email": "teste@email.com",

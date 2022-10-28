@@ -1,9 +1,10 @@
+/* eslint-disable no-undef */
 import mockAxios from "axios";
 import AuthService from "../../src/services/auth";
 
 jest.mock("axios");
 
-describe("AuthService", () => {
+describe("Services auth, AuthService", () => {
   afterEach(() => {
     jest.clearAllMocks();
   });

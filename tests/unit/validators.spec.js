@@ -1,4 +1,8 @@
-import { validateEmptyAndEmail, validateEmptyAndLength3 } from "./validators";
+/* eslint-disable no-undef */
+import {
+  validateEmptyAndEmail,
+  validateEmptyAndLength3,
+} from "../../src/utils/validators";
 
 describe("Validators utils, maxLength3", () => {
   it("should return an error with empty payload", () => {
@@ -20,8 +24,9 @@ describe("Validators utils, Email", () => {
   });
 
   it("should return an error with invalid Email", () => {
-    
-    expect(validateEmptyAndEmail("mayemail")).toBe("*Este campo precisa ser um email");
+    expect(validateEmptyAndEmail("mayemail")).toBe(
+      "*Este campo precisa ser um email"
+    );
   });
 
   it("should returns true when input pass a correct Email", () => {
