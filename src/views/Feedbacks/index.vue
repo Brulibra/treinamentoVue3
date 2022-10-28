@@ -62,7 +62,7 @@ import { reactive, onMounted, onUnmounted } from "vue";
 import services from "@/services";
 
 import HeaderLogged from "@/components/HeaderLogged/index.vue";
-import FeedbackCard from "@/components/FeedbackCard/index.vue";
+import FeedbackCard from "@/components/FeedbackCard/feedback-index.vue";
 import FeedbackCardLoading from "@/components/FeedbackCard/Loading.vue";
 
 import Filters from "./Filters.vue";

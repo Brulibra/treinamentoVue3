@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1666902942726" clover="3.2.0">
-  <project timestamp="1666902942726" name="All files">
-    <metrics statements="22" coveredstatements="21" conditionals="12" coveredconditionals="11" methods="5" coveredmethods="5" elements="39" coveredelements="37" complexity="0" loc="22" ncloc="22" packages="2" files="2" classes="2"/>
+<coverage generated="1666982839301" clover="3.2.0">
+  <project timestamp="1666982839302" name="All files">
+    <metrics statements="34" coveredstatements="31" conditionals="14" coveredconditionals="12" methods="11" coveredmethods="10" elements="59" coveredelements="53" complexity="0" loc="34" ncloc="34" packages="4" files="6" classes="6"/>
+    <package name="hooks">
+      <metrics statements="3" coveredstatements="2" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
+      <file name="useStore.js" path="/home/bruna-de-paula/estudos/treinamentoVue3/dashboard/src/hooks/useStore.js">
+        <metrics statements="3" coveredstatements="2" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
+        <line num="4" count="4" type="cond" truecount="1" falsecount="1"/>
+        <line num="5" count="0" type="stmt"/>
+        <line num="7" count="4" type="stmt"/>
+      </file>
+    </package>
     <package name="services">
       <metrics statements="11" coveredstatements="10" conditionals="4" coveredconditionals="3" methods="3" coveredmethods="3"/>
       <file name="auth.js" path="/home/bruna-de-paula/estudos/treinamentoVue3/dashboard/src/services/auth.js">
@@ -17,6 +26,27 @@
         <line num="26" count="2" type="cond" truecount="2" falsecount="0"/>
         <line num="27" count="1" type="stmt"/>
         <line num="33" count="2" type="stmt"/>
+      </file>
+    </package>
+    <package name="store">
+      <metrics statements="9" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="4"/>
+      <file name="global.js" path="/home/bruna-de-paula/estudos/treinamentoVue3/dashboard/src/store/global.js">
+        <metrics statements="2" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+      </file>
+      <file name="index.js" path="/home/bruna-de-paula/estudos/treinamentoVue3/dashboard/src/store/index.js">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+      <file name="user.js" path="/home/bruna-de-paula/estudos/treinamentoVue3/dashboard/src/store/user.js">
+        <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="4"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="12" count="3" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
+        <line num="20" count="2" type="stmt"/>
+        <line num="24" count="1" type="stmt"/>
+        <line num="28" count="1" type="stmt"/>
       </file>
     </package>
     <package name="utils">

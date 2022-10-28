@@ -82,7 +82,7 @@
 
 <script>
 import Icon from "/src/components/Icon";
-import Badge from "./Badge.vue";
+import Badge from "./feedback-badge.vue";
 
 import { reactive } from "vue";
 import { getDiffTimeBetweenCurrentDate } from "@/utils/data.js";
