@@ -1,4 +1,3 @@
-<!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <CustomHeader @create-accout="handleAccoutCreate" @login="handleLogin" />
   <Contact />
@@ -8,8 +7,8 @@
 </template>
 
 <script>
-import CustomHeader from "./CustomHead.vue";
-import Contact from "./Contact.vue";
+import CustomHeader from "./custom-head.vue";
+import Contact from "./home-contact.vue";
 import { onMounted } from "vue";
 import { useRouter } from "vue-router";
 import useModal from "../../hooks/useModal";

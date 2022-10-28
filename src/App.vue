@@ -5,7 +5,7 @@
 
 <script>
 import services from "@/services";
-import ModalFactory from "./components/ModalFactory/index.vue";
+import ModalFactory from "./components/ModalFactory/modal-factory.vue";
 import { watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { setCurrentUser } from './store/user'

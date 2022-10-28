@@ -1,4 +1,3 @@
-<!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <span :class="`bg-${classColor}`" class="badge">
     {{ label }}

@@ -1,4 +1,3 @@
-<!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <ContentLoader
     class="flex flex-col items-center rounded"
@@ -26,7 +25,7 @@
   </ContentLoader>
 </template>
 <script>
-import ContentLoader from "@/components/ContentLoader/index.vue";
+import ContentLoader from "@/components/ContentLoader/content-loader.vue";
 export default {
   components: { ContentLoader },
 };

@@ -1,11 +1,10 @@
-<!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <component :is="name" v-bind="$props" />
 </template>
 <script>
-import Loading from "./Loading.vue";
-import Copy from "./Copy.vue";
-import ChevronDown from "./ChevronDown.vue";
+import Loading from "./loading-icon.vue";
+import Copy from "./copy-icon.vue";
+import ChevronDown from "./chevron-down.vue";
 export default {
 
   components: { Loading, Copy, ChevronDown },
