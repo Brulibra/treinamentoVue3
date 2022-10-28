@@ -1,4 +1,3 @@
-3<!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <header class="header">
     <div class="header-group">

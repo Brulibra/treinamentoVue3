@@ -1,4 +1,3 @@
-<!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <teleport to="body">
     <div
@@ -30,10 +29,10 @@ import {
 import useModal from "@/hooks/useModal";
 
 const ModalLogin = defineAsyncComponent(() =>
-  import("../ModalLogin/index.vue")
+  import("../ModalLogin/modal-login.vue")
 );
 const ModalAccouCreate = defineAsyncComponent(() =>
-  import("../ModalAccoutCreate/index.vue")
+  import("../ModalAccoutCreate/modal-accout-create.vue")
 );
 
 const DEFAULT_WIDTH = "w-3/4 lg:w-1/3";

@@ -1,4 +1,3 @@
-<!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <div class="modalRegister-header">
     <h1 class="modalRegister-title">Crie uma Conta</h1>
@@ -82,7 +81,7 @@ import { useField } from "vee-validate";
 import { useRouter } from "vue-router";
 import { useToast } from "vue-toastification";
 
-import Icon from "../Icon/index.vue";
+import Icon from "../Icon/icons-index.vue";
 import useModal from "@/hooks/useModal";
 import services from "@/services";
 

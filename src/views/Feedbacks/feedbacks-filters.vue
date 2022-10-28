@@ -1,4 +1,3 @@
-<!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <div class="filters-container">
     <h1 class="filters-title">Filtros</h1>

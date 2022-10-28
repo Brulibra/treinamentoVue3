@@ -1,4 +1,3 @@
-<!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <div class="feedback-card-container" @click="handleToggle">
     <div class="feedback-card-header">
@@ -82,7 +81,7 @@
 
 <script>
 import Icon from "/src/components/Icon";
-import Badge from "./Badge.vue";
+import Badge from "./feedbackCard-Badge.vue";
 
 import { reactive } from "vue";
 import { getDiffTimeBetweenCurrentDate } from "@/utils/data.js";
